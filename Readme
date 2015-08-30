@@ -9,5 +9,4 @@ Open 'index.html' in your browser. Make sure the Leap Motion device is connected
 Swipe right = Selects the next product
 Swipe left = Selects the previous product
 Tap = Adds product to cart
-Screen Tap = checkout
-Two circles = Clears the cart
+Pinch = checkout

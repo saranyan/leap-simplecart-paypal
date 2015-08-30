@@ -25,8 +25,21 @@ var foo = false;
 var circle = 0;
 
 Leap.loop(controllerOptions, function(frame) {
-  // Body of callback function
-  var prevGestureID = 0;
+
+if(frame.hands.length > 0){
+  //for (var i = 0; i < frame.hands.length; i++) {
+    if(frame.hands[0].pinchStrength > 0.999){
+      console.log("hand pinch detected: " + frame.hands[0].pinchStrength);
+      if(localStorage.foo == "1"){
+        localStorage.foo = 0;
+        console.log('trigger');
+        jQuery('#checkout_btn')[0].click();
+      }
+    }
+  //}
+}
+// Body of callback function
+var prevGestureID = 0;
 if (frame.gestures.length > 0) {
   console.log(frame.id + " " + frame.gestures.length)
   //for (var i = 0; i < 1; i++) {
@@ -35,13 +48,6 @@ if (frame.gestures.length > 0) {
 
       case "circle":
           console.log("circle");
-          circle += 1;
-          localStorage.circle = circle;
-            if(circle > 20){
-              localStorage.foo = 0;
-              jQuery('#empty_btn')[0].click();
-              localStorage.circle = 0;
-            }
         break;
       case "swipe":
           console.log("swipe " + (swipeDirection(gesture.direction) == 1?"right":"left"))
@@ -73,11 +79,11 @@ if (frame.gestures.length > 0) {
         break;
       case "screenTap":
           console.log("screen tap")
-          if(localStorage.foo == "1"){
+          /*if(localStorage.foo == "1"){
             localStorage.foo = 0;
             console.log('trigger');
             jQuery('#checkout_btn')[0].click();
-          }
+          }*/
 
       case "keyTap":
         console.log("key tap")

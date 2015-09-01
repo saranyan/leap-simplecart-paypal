@@ -27,8 +27,7 @@ var circle = 0;
 Leap.loop(controllerOptions, function(frame) {
 
 if(frame.hands.length > 0){
-  //for (var i = 0; i < frame.hands.length; i++) {
-    if(frame.hands[0].pinchStrength > 0.999){
+  if(frame.hands[0].pinchStrength > 0.999){
       console.log("hand pinch detected: " + frame.hands[0].pinchStrength);
       if(localStorage.foo == "1"){
         localStorage.foo = 0;
@@ -36,7 +35,6 @@ if(frame.hands.length > 0){
         jQuery('#checkout_btn')[0].click();
       }
     }
-  //}
 }
 // Body of callback function
 var prevGestureID = 0;
